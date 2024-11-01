@@ -12,6 +12,7 @@ message Class{
 	repeated string StudentsId      =5;
 }
 
+// Create Class
 message CreateClassRequest {
     string Name                     =1;
 	string SchoolYear               =2;
@@ -24,12 +25,26 @@ message CreateClassResponse {
     Class classCreated = 2;
 }
 
+// Get all classes
 message GetAllClassesResponse {
     string message = 1;
     repeated Class classList = 2;
 }
 
+
+// Get Class by Id
+
+message GetClassByIdRequest {
+    string id = 1;
+}
+
+message GetClassByIdResponse {
+    string message = 1;
+    Class class = 2;
+}
+
 service ClassService {
     rpc CreateNewClass(CreateClassRequest) returns (CreateClassResponse);
     rpc GetAllClasses(google.protobuf.Empty) returns (GetAllClassesResponse);
+    rpc GetClassById(GetClassByIdRequest) returns (GetClassByIdResponse);
 }
