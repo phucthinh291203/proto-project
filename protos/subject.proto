@@ -1,0 +1,30 @@
+syntax = "proto3";
+import  "google/protobuf/empty.proto";
+option go_package = "/proto";
+
+message Subject{
+    string ID                       =1;
+	string Name                     =2;
+	int32 Credit              =3;
+	
+}
+
+message CreateSubjectRequest {
+    string Name                     =1;
+	int32 Credit              =2;
+}
+
+message CreateSubjectResponse {
+    string message            =1;
+    Subject subjectCreated = 2;
+}
+
+message GetAllSubjectsResponse {
+    string message            =1;
+    repeated Subject subjectList = 2;
+}
+
+service SubjectService {
+    rpc CreateNewSubject(CreateSubjectRequest) returns (CreateSubjectResponse);
+    rpc GetAllSubjects(google.protobuf.Empty) returns (GetAllSubjectsResponse);
+}
