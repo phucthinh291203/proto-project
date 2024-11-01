@@ -1,6 +1,6 @@
 module github.com/phucthinh291203/proto-project
 
-go 1.23.1
+go 1.23.2
 
 require (
 	google.golang.org/grpc v1.67.1
