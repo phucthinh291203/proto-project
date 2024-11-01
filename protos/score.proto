@@ -24,7 +24,6 @@ message CreateScoreRequest {
 	string SubjectId              =2;
 	ExamType examType = 3;
     double result = 4;
-    string CreatedById = 5;
 }
 
 message CreateScoreResponse {
@@ -32,3 +31,6 @@ message CreateScoreResponse {
     Score scoreCreated = 2;
 }
 
+service ScoreService {
+    rpc CreateNewScore (CreateScoreRequest) returns (CreateScoreResponse);
+}
