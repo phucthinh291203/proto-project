@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option go_package = "/proto";
+
+
+message Class{
+    string ID                       =1;
+	string Name                     =2;
+	string SchoolYear               =3;
+	string HomeroomTeacherId        =4;
+	repeated string StudentsId      =5;
+}
+
+message CreateClassRequest {
+    string Name                     =1;
+	string SchoolYear               =2;
+    string HomeroomTeacherId        =3;
+	repeated string StudentsId      =4;
+}
+
+message CreateClassResponse {
+    string message = 1;
+    Class classCreated = 2;
+}
+
+message GetAllClassesResponse {
+    string message = 1;
+    repeated Class classList = 2;
+}
+
+service ClassService {
+    rpc CreateNewClass(CreateClassRequest) returns (CreateClassResponse);
+    rpc GetAllClasses(google.protobuf.Empty) returns (GetAllClassesResponse);
+}
