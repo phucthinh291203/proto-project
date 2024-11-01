@@ -1,0 +1,34 @@
+syntax = "proto3";
+option go_package = "/proto";
+
+
+enum ExamType {
+    fifteen = 0;
+    fourty_five = 1;
+    first_semester =2;
+    second_semester = 3;
+    mouth = 4;  //Kiem tra mom
+}
+
+message Score{
+    string ID                       =1;
+	string StudentId                     =2;
+	string SubjectId              =3;
+	ExamType examType = 4;
+    double result = 5;
+    string CreatedById = 6;
+}
+
+message CreateScoreRequest {
+    string StudentId                     =1;
+	string SubjectId              =2;
+	ExamType examType = 3;
+    double result = 4;
+    string CreatedById = 5;
+}
+
+message CreateScoreResponse {
+    string message            =1;
+    Score scoreCreated = 2;
+}
+
