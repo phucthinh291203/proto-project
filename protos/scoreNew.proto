@@ -17,7 +17,8 @@ message Score{
 	ExamType examType = 4;
     double result = 5;
     int32  semester = 6;
-    string CreatedById = 7;
+    int32  weight = 7;
+    string CreatedById = 8;
 }
 
 message CreateScoreRequest {
