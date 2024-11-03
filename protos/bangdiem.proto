@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "protos/scoreNew.proto";
+option go_package = "/proto";
+
+message CotDiem{
+    ExamType type = 1;
+    double   result = 2; 
+}
+
+message TrungBinhMon {
+    string subjectName = 1;
+    repeated CotDiem scores = 2;
+    double  average_score = 3;
+}
+
+message BangDiem{
+    string StudentId                =1;
+	int32  semester                 =2;
+	TrungBinhMon subjects = 3;
+    double average_score_student =4;
+    string grade = 5;
+}
+
+message InBangDiemRequest {
+    string StudentId                =1;
+	int32  semester                 =2;
+}
+
+message InBangDiemResponse {
+    string message = 1;
+    BangDiem bangDiem = 2;
+}
+
+service BangDiemService {
+    rpc InBangDiem(InBangDiemRequest) returns (InBangDiemResponse);
+}
