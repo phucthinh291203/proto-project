@@ -16,7 +16,8 @@ message Score{
 	string SubjectId              =3;
 	ExamType examType = 4;
     double result = 5;
-    string CreatedById = 6;
+    int32  semester = 6;
+    string CreatedById = 7;
 }
 
 message CreateScoreRequest {
