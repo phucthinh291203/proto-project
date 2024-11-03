@@ -24,7 +24,7 @@ message CreateScoreRequest {
     string StudentId                     =1;
 	string SubjectId              =2;
 	ExamType examType = 3;
-    int32 score = 4;
+    int32 semester = 4;
     double result = 5;
 }
 
