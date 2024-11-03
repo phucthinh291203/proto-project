@@ -1,10 +1,9 @@
 syntax = "proto3";
 
-import "protos/scoreNew.proto";
 option go_package = "/proto";
 
 message CotDiem{
-    ExamType type = 1;
+    string type = 1;
     double   result = 2; 
 }
 
@@ -17,7 +16,7 @@ message TrungBinhMon {
 message BangDiem{
     string StudentId                =1;
 	int32  semester                 =2;
-	TrungBinhMon subjects = 3;
+	repeated TrungBinhMon subjects = 3;
     double average_score_student =4;
     string grade = 5;
 }
