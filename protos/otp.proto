@@ -12,7 +12,8 @@ message SentOTPResponse {
 }
 
 message VerifyOTPRequest {
-    string otpReceived = 1;
+    string email = 1;
+    string otpReceived = 2;
 }
 
 message VerifyOTPResponse {
@@ -20,8 +21,9 @@ message VerifyOTPResponse {
 }
 
 message ChangePasswordRequest {
-    string password = 1;
-    string newPassword = 2;
+    string email = 1;
+    string password = 2;
+    string newPassword = 3;
 }
 message ChangePasswordResponse {
     string message = 1;
