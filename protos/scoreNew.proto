@@ -1,4 +1,6 @@
 syntax = "proto3";
+
+import  "google/protobuf/empty.proto";
 option go_package = "/proto";
 
 
@@ -34,6 +36,12 @@ message CreateScoreResponse {
     Score scoreCreated = 2;
 }
 
+message GetAllScoreStudentResponse {
+    string message = 1;
+    repeated Score scores = 2;
+}
+
 service ScoreService {
     rpc CreateNewScore (CreateScoreRequest) returns (CreateScoreResponse);
+    rpc GetAllScore(google.protobuf.Empty) returns (GetAllScoreStudentResponse);
 }
