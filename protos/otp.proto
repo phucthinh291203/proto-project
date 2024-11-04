@@ -4,7 +4,7 @@ option go_package = "/proto";
 
 message SendOTPRequest {
     string role = 1;
-    string userName = 2;
+    string email = 2;
 }
 
 message SentOTPResponse {
