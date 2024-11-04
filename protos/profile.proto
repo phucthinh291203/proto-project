@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import  "google/protobuf/empty.proto";
+option go_package = "/proto";
+
+
+message Profile{
+    string name = 1;
+    string phoneNumber = 2;
+    string email = 3;
+    string username = 4;
+}
+
+
+message GetMyProfileResponse {
+    string message = 1;
+    Profile myprofile = 2;
+}
+
+service ProfileService {
+    rpc GetMyProfile(google.protobuf.Empty) returns (GetMyProfileResponse);
+}
