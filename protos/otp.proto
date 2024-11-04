@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "/proto";
+
+message SendOTPRequest {
+    string role = 1;
+    string userName = 2;
+}
+
+message SentOTPResponse {
+    string message = 1;
+}
+
+message VerifyOTPRequest {
+    string otpReceived = 1;
+}
+
+message VerifyOTPResponse {
+    string message = 1;
+}
+
+message ChangePasswordRequest {
+    string password = 1;
+    string newPassword = 2;
+}
+message ChangePasswordResponse {
+    string message = 1;
+}
+
+
+service OTPService{
+    rpc SendOTP(SendOTPRequest) returns (SentOTPResponse);
+    rpc VerifyOTP(VerifyOTPRequest) returns (VerifyOTPResponse);
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+}
+
