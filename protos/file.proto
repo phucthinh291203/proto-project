@@ -12,6 +12,17 @@ message ImportFileResponse {
     string url = 2;
 }
 
+message GetFileToUpdateRequest {
+    string fileName = 1;
+}
+
+message GetFileToUpdateResponse {
+    string message = 1;
+}
+
 service FileService {
     rpc ImportFile(ImportFileRequest) returns (ImportFileResponse);
+    rpc GetFileToUpdate(GetFileToUpdateRequest) returns (GetFileToUpdateResponse);
 }
+
+
