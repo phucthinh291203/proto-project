@@ -15,6 +15,7 @@ message ImportFileResponse {
 
 message GetFileToUpdateRequest {
     string fileName = 1;
+    string fileType = 2;
 }
 
 message GetFileToUpdateResponse {
