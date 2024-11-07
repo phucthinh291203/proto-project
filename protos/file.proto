@@ -5,6 +5,7 @@ option go_package = "/proto";
 
 message ImportFileRequest {
     string fileName = 1;
+    string fileType = 2;
 }
 
 message ImportFileResponse {
