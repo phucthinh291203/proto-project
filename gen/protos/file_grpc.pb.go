@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -27,7 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileServiceClient interface {
-	ImportFile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImportFileResponse, error)
+	ImportFile(ctx context.Context, in *ImportFileRequest, opts ...grpc.CallOption) (*ImportFileResponse, error)
 }
 
 type fileServiceClient struct {
@@ -38,7 +37,7 @@ func NewFileServiceClient(cc grpc.ClientConnInterface) FileServiceClient {
 	return &fileServiceClient{cc}
 }
 
-func (c *fileServiceClient) ImportFile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImportFileResponse, error) {
+func (c *fileServiceClient) ImportFile(ctx context.Context, in *ImportFileRequest, opts ...grpc.CallOption) (*ImportFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ImportFileResponse)
 	err := c.cc.Invoke(ctx, FileService_ImportFile_FullMethodName, in, out, cOpts...)
@@ -52,7 +51,7 @@ func (c *fileServiceClient) ImportFile(ctx context.Context, in *emptypb.Empty, o
 // All implementations must embed UnimplementedFileServiceServer
 // for forward compatibility.
 type FileServiceServer interface {
-	ImportFile(context.Context, *emptypb.Empty) (*ImportFileResponse, error)
+	ImportFile(context.Context, *ImportFileRequest) (*ImportFileResponse, error)
 	mustEmbedUnimplementedFileServiceServer()
 }
 
@@ -63,7 +62,7 @@ type FileServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFileServiceServer struct{}
 
-func (UnimplementedFileServiceServer) ImportFile(context.Context, *emptypb.Empty) (*ImportFileResponse, error) {
+func (UnimplementedFileServiceServer) ImportFile(context.Context, *ImportFileRequest) (*ImportFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ImportFile not implemented")
 }
 func (UnimplementedFileServiceServer) mustEmbedUnimplementedFileServiceServer() {}
@@ -88,7 +87,7 @@ func RegisterFileServiceServer(s grpc.ServiceRegistrar, srv FileServiceServer) {
 }
 
 func _FileService_ImportFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(ImportFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,7 +99,7 @@ func _FileService_ImportFile_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: FileService_ImportFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServiceServer).ImportFile(ctx, req.(*emptypb.Empty))
+		return srv.(FileServiceServer).ImportFile(ctx, req.(*ImportFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

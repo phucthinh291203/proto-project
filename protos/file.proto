@@ -1,12 +1,16 @@
 syntax = "proto3";
 
-import  "google/protobuf/empty.proto";
+
 option go_package = "/proto";
+
+message ImportFileRequest {
+    string fileName = 1;
+}
 
 message ImportFileResponse {
     string url = 1;
 }
 
 service FileService {
-    rpc ImportFile(google.protobuf.Empty) returns (ImportFileResponse);
+    rpc ImportFile(ImportFileRequest) returns (ImportFileResponse);
 }
