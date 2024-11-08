@@ -19,15 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FileService_GetPresignedPutObjectURL_FullMethodName = "/FileService/GetPresignedPutObjectURL"
-	FileService_ImportFile_FullMethodName               = "/FileService/ImportFile"
+	FileService_ImportFile_FullMethodName = "/FileService/ImportFile"
 )
 
 // FileServiceClient is the client API for FileService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileServiceClient interface {
-	GetPresignedPutObjectURL(ctx context.Context, in *GetPresignedPutObjectURLRequest, opts ...grpc.CallOption) (*GetPresignedPutObjectURLResponse, error)
 	ImportFile(ctx context.Context, in *ImportFileRequest, opts ...grpc.CallOption) (*ImportFileResponse, error)
 }
 
@@ -37,16 +35,6 @@ type fileServiceClient struct {
 
 func NewFileServiceClient(cc grpc.ClientConnInterface) FileServiceClient {
 	return &fileServiceClient{cc}
-}
-
-func (c *fileServiceClient) GetPresignedPutObjectURL(ctx context.Context, in *GetPresignedPutObjectURLRequest, opts ...grpc.CallOption) (*GetPresignedPutObjectURLResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPresignedPutObjectURLResponse)
-	err := c.cc.Invoke(ctx, FileService_GetPresignedPutObjectURL_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *fileServiceClient) ImportFile(ctx context.Context, in *ImportFileRequest, opts ...grpc.CallOption) (*ImportFileResponse, error) {
@@ -63,7 +51,6 @@ func (c *fileServiceClient) ImportFile(ctx context.Context, in *ImportFileReques
 // All implementations must embed UnimplementedFileServiceServer
 // for forward compatibility.
 type FileServiceServer interface {
-	GetPresignedPutObjectURL(context.Context, *GetPresignedPutObjectURLRequest) (*GetPresignedPutObjectURLResponse, error)
 	ImportFile(context.Context, *ImportFileRequest) (*ImportFileResponse, error)
 	mustEmbedUnimplementedFileServiceServer()
 }
@@ -75,9 +62,6 @@ type FileServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFileServiceServer struct{}
 
-func (UnimplementedFileServiceServer) GetPresignedPutObjectURL(context.Context, *GetPresignedPutObjectURLRequest) (*GetPresignedPutObjectURLResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPresignedPutObjectURL not implemented")
-}
 func (UnimplementedFileServiceServer) ImportFile(context.Context, *ImportFileRequest) (*ImportFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ImportFile not implemented")
 }
@@ -100,24 +84,6 @@ func RegisterFileServiceServer(s grpc.ServiceRegistrar, srv FileServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&FileService_ServiceDesc, srv)
-}
-
-func _FileService_GetPresignedPutObjectURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPresignedPutObjectURLRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FileServiceServer).GetPresignedPutObjectURL(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: FileService_GetPresignedPutObjectURL_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServiceServer).GetPresignedPutObjectURL(ctx, req.(*GetPresignedPutObjectURLRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _FileService_ImportFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -145,10 +111,6 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "FileService",
 	HandlerType: (*FileServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetPresignedPutObjectURL",
-			Handler:    _FileService_GetPresignedPutObjectURL_Handler,
-		},
 		{
 			MethodName: "ImportFile",
 			Handler:    _FileService_ImportFile_Handler,

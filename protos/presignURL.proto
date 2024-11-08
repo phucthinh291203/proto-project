@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+
+option go_package = "/proto";
+
+message GetPresignedPutObjectURLRequest {
+    string fileName = 1;        // danhsach.csv
+}
+
+message GetPresignedPutObjectURLResponse {
+    string path = 1;            // token_danhsach.csv
+    string url = 2;             // https://localhost:9000/put ....
+}
+
+message GetPresignedGetObjectURLRequest {
+    string path = 1;        // token_danhsach.csv
+}
+
+message GetPresignedGetObjectURLResponse {
+    string url = 1;        // https://localhost:9000/get
+}
+
+service PresignedURLService {
+    rpc GetPresignedPutObjectURL(GetPresignedPutObjectURLRequest) returns (GetPresignedPutObjectURLResponse);
+    rpc GetPresignedGetObjectURL(GetPresignedGetObjectURLRequest) returns (GetPresignedGetObjectURLResponse);
+}
