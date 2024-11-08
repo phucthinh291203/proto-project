@@ -12,9 +12,17 @@ message ImportFileResponse {
     string message = 1;         //Thông báo import thành công
 }   
 
+message DownloadFileRequest {
+    string path = 1;            //Nhập đường dẫn file vào
+}
+
+message DownloadFileResponse {
+    string path = 1;            //Nhập đường dẫn file vào
+}
 
 service FileService {
     rpc ImportFile(ImportFileRequest) returns (ImportFileResponse);
+    rpc DownloadFile(DownloadFileRequest) returns (DownloadFileResponse);
 }
 
 
