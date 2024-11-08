@@ -20,18 +20,115 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GetPresignedPutObjectURLRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FileName string `protobuf:"bytes,1,opt,name=fileName,proto3" json:"fileName,omitempty"` // danhsach.csv
+}
+
+func (x *GetPresignedPutObjectURLRequest) Reset() {
+	*x = GetPresignedPutObjectURLRequest{}
+	mi := &file_protos_file_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPresignedPutObjectURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPresignedPutObjectURLRequest) ProtoMessage() {}
+
+func (x *GetPresignedPutObjectURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_file_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPresignedPutObjectURLRequest.ProtoReflect.Descriptor instead.
+func (*GetPresignedPutObjectURLRequest) Descriptor() ([]byte, []int) {
+	return file_protos_file_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetPresignedPutObjectURLRequest) GetFileName() string {
+	if x != nil {
+		return x.FileName
+	}
+	return ""
+}
+
+type GetPresignedPutObjectURLResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"` // token_danhsach.csv
+	Url  string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`   // https://localhost:9000/put ....
+}
+
+func (x *GetPresignedPutObjectURLResponse) Reset() {
+	*x = GetPresignedPutObjectURLResponse{}
+	mi := &file_protos_file_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPresignedPutObjectURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPresignedPutObjectURLResponse) ProtoMessage() {}
+
+func (x *GetPresignedPutObjectURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_file_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPresignedPutObjectURLResponse.ProtoReflect.Descriptor instead.
+func (*GetPresignedPutObjectURLResponse) Descriptor() ([]byte, []int) {
+	return file_protos_file_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetPresignedPutObjectURLResponse) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *GetPresignedPutObjectURLResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
 type ImportFileRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FileName string `protobuf:"bytes,1,opt,name=fileName,proto3" json:"fileName,omitempty"`
-	FileType string `protobuf:"bytes,2,opt,name=fileType,proto3" json:"fileType,omitempty"`
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"` //Nhập đường dẫn file vào
 }
 
 func (x *ImportFileRequest) Reset() {
 	*x = ImportFileRequest{}
-	mi := &file_protos_file_proto_msgTypes[0]
+	mi := &file_protos_file_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +140,7 @@ func (x *ImportFileRequest) String() string {
 func (*ImportFileRequest) ProtoMessage() {}
 
 func (x *ImportFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_file_proto_msgTypes[0]
+	mi := &file_protos_file_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,19 +153,12 @@ func (x *ImportFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImportFileRequest.ProtoReflect.Descriptor instead.
 func (*ImportFileRequest) Descriptor() ([]byte, []int) {
-	return file_protos_file_proto_rawDescGZIP(), []int{0}
+	return file_protos_file_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ImportFileRequest) GetFileName() string {
+func (x *ImportFileRequest) GetPath() string {
 	if x != nil {
-		return x.FileName
-	}
-	return ""
-}
-
-func (x *ImportFileRequest) GetFileType() string {
-	if x != nil {
-		return x.FileType
+		return x.Path
 	}
 	return ""
 }
@@ -78,13 +168,12 @@ type ImportFileResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Url     string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"` //Thông báo import thành công
 }
 
 func (x *ImportFileResponse) Reset() {
 	*x = ImportFileResponse{}
-	mi := &file_protos_file_proto_msgTypes[1]
+	mi := &file_protos_file_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -96,7 +185,7 @@ func (x *ImportFileResponse) String() string {
 func (*ImportFileResponse) ProtoMessage() {}
 
 func (x *ImportFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_file_proto_msgTypes[1]
+	mi := &file_protos_file_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +198,7 @@ func (x *ImportFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImportFileResponse.ProtoReflect.Descriptor instead.
 func (*ImportFileResponse) Descriptor() ([]byte, []int) {
-	return file_protos_file_proto_rawDescGZIP(), []int{1}
+	return file_protos_file_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ImportFileResponse) GetMessage() string {
@@ -119,107 +208,92 @@ func (x *ImportFileResponse) GetMessage() string {
 	return ""
 }
 
-func (x *ImportFileResponse) GetUrl() string {
+type GetPresignedGetObjectURLRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"` // danhsach.csv
+}
+
+func (x *GetPresignedGetObjectURLRequest) Reset() {
+	*x = GetPresignedGetObjectURLRequest{}
+	mi := &file_protos_file_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPresignedGetObjectURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPresignedGetObjectURLRequest) ProtoMessage() {}
+
+func (x *GetPresignedGetObjectURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_file_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPresignedGetObjectURLRequest.ProtoReflect.Descriptor instead.
+func (*GetPresignedGetObjectURLRequest) Descriptor() ([]byte, []int) {
+	return file_protos_file_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetPresignedGetObjectURLRequest) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+type GetPresignedGetObjectURLResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Url string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"` // https://localhost:9000/put
+}
+
+func (x *GetPresignedGetObjectURLResponse) Reset() {
+	*x = GetPresignedGetObjectURLResponse{}
+	mi := &file_protos_file_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPresignedGetObjectURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPresignedGetObjectURLResponse) ProtoMessage() {}
+
+func (x *GetPresignedGetObjectURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_file_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPresignedGetObjectURLResponse.ProtoReflect.Descriptor instead.
+func (*GetPresignedGetObjectURLResponse) Descriptor() ([]byte, []int) {
+	return file_protos_file_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetPresignedGetObjectURLResponse) GetUrl() string {
 	if x != nil {
 		return x.Url
-	}
-	return ""
-}
-
-type GetFileToUpdateRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	FileName string `protobuf:"bytes,1,opt,name=fileName,proto3" json:"fileName,omitempty"`
-	FileType string `protobuf:"bytes,2,opt,name=fileType,proto3" json:"fileType,omitempty"`
-}
-
-func (x *GetFileToUpdateRequest) Reset() {
-	*x = GetFileToUpdateRequest{}
-	mi := &file_protos_file_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFileToUpdateRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFileToUpdateRequest) ProtoMessage() {}
-
-func (x *GetFileToUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_file_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFileToUpdateRequest.ProtoReflect.Descriptor instead.
-func (*GetFileToUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_protos_file_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetFileToUpdateRequest) GetFileName() string {
-	if x != nil {
-		return x.FileName
-	}
-	return ""
-}
-
-func (x *GetFileToUpdateRequest) GetFileType() string {
-	if x != nil {
-		return x.FileType
-	}
-	return ""
-}
-
-type GetFileToUpdateResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-}
-
-func (x *GetFileToUpdateResponse) Reset() {
-	*x = GetFileToUpdateResponse{}
-	mi := &file_protos_file_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFileToUpdateResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFileToUpdateResponse) ProtoMessage() {}
-
-func (x *GetFileToUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_file_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFileToUpdateResponse.ProtoReflect.Descriptor instead.
-func (*GetFileToUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_protos_file_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetFileToUpdateResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
 	}
 	return ""
 }
@@ -228,34 +302,39 @@ var File_protos_file_proto protoreflect.FileDescriptor
 
 var file_protos_file_proto_rawDesc = []byte{
 	0x0a, 0x11, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x22, 0x4b, 0x0a, 0x11, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c,
-	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65,
-	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65,
-	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65,
-	0x22, 0x40, 0x0a, 0x12, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75,
-	0x72, 0x6c, 0x22, 0x50, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x54, 0x6f, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
-	0x66, 0x69, 0x6c, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x66, 0x69, 0x6c, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65,
-	0x54, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65,
-	0x54, 0x79, 0x70, 0x65, 0x22, 0x33, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x54,
-	0x6f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x8a, 0x01, 0x0a, 0x0b, 0x46, 0x69,
-	0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x35, 0x0a, 0x0a, 0x49, 0x6d, 0x70,
-	0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x12, 0x2e, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74,
-	0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x13, 0x2e, 0x49, 0x6d,
-	0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x44, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x54, 0x6f, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x12, 0x17, 0x2e, 0x47, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x54, 0x6f, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x47,
-	0x65, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x54, 0x6f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x08, 0x5a, 0x06, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x22, 0x3d, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67,
+	0x6e, 0x65, 0x64, 0x50, 0x75, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x4e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x4e, 0x61,
+	0x6d, 0x65, 0x22, 0x48, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67, 0x6e,
+	0x65, 0x64, 0x50, 0x75, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72,
+	0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x27, 0x0a, 0x11,
+	0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x2e, 0x0a, 0x12, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46,
+	0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x35, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73,
+	0x69, 0x67, 0x6e, 0x65, 0x64, 0x47, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52,
+	0x4c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x34, 0x0a, 0x20,
+	0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x47, 0x65, 0x74, 0x4f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75,
+	0x72, 0x6c, 0x32, 0xa5, 0x01, 0x0a, 0x0b, 0x46, 0x69, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x12, 0x5f, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67, 0x6e,
+	0x65, 0x64, 0x50, 0x75, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x12, 0x20,
+	0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50, 0x75, 0x74,
+	0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x21, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x65, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x50,
+	0x75, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x55, 0x52, 0x4c, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x35, 0x0a, 0x0a, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c,
+	0x65, 0x12, 0x12, 0x2e, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x13, 0x2e, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x46, 0x69,
+	0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x08, 0x5a, 0x06, 0x2f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -270,18 +349,20 @@ func file_protos_file_proto_rawDescGZIP() []byte {
 	return file_protos_file_proto_rawDescData
 }
 
-var file_protos_file_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_protos_file_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_protos_file_proto_goTypes = []any{
-	(*ImportFileRequest)(nil),       // 0: ImportFileRequest
-	(*ImportFileResponse)(nil),      // 1: ImportFileResponse
-	(*GetFileToUpdateRequest)(nil),  // 2: GetFileToUpdateRequest
-	(*GetFileToUpdateResponse)(nil), // 3: GetFileToUpdateResponse
+	(*GetPresignedPutObjectURLRequest)(nil),  // 0: GetPresignedPutObjectURLRequest
+	(*GetPresignedPutObjectURLResponse)(nil), // 1: GetPresignedPutObjectURLResponse
+	(*ImportFileRequest)(nil),                // 2: ImportFileRequest
+	(*ImportFileResponse)(nil),               // 3: ImportFileResponse
+	(*GetPresignedGetObjectURLRequest)(nil),  // 4: GetPresignedGetObjectURLRequest
+	(*GetPresignedGetObjectURLResponse)(nil), // 5: GetPresignedGetObjectURLResponse
 }
 var file_protos_file_proto_depIdxs = []int32{
-	0, // 0: FileService.ImportFile:input_type -> ImportFileRequest
-	2, // 1: FileService.GetFileToUpdate:input_type -> GetFileToUpdateRequest
-	1, // 2: FileService.ImportFile:output_type -> ImportFileResponse
-	3, // 3: FileService.GetFileToUpdate:output_type -> GetFileToUpdateResponse
+	0, // 0: FileService.GetPresignedPutObjectURL:input_type -> GetPresignedPutObjectURLRequest
+	2, // 1: FileService.ImportFile:input_type -> ImportFileRequest
+	1, // 2: FileService.GetPresignedPutObjectURL:output_type -> GetPresignedPutObjectURLResponse
+	3, // 3: FileService.ImportFile:output_type -> ImportFileResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -300,7 +381,7 @@ func file_protos_file_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_file_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

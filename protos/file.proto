@@ -3,28 +3,35 @@ syntax = "proto3";
 
 option go_package = "/proto";
 
+message GetPresignedPutObjectURLRequest {
+    string fileName = 1;        // danhsach.csv
+}
+
+message GetPresignedPutObjectURLResponse {
+    string path = 1;            // token_danhsach.csv
+    string url = 2;             // https://localhost:9000/put ....
+}
+
 message ImportFileRequest {
-    string fileName = 1;
-    string fileType = 2;
+    string path = 1;            //Nhập đường dẫn file vào
 }
 
 message ImportFileResponse {
-    string message = 1;
-    string url = 2;
+    string message = 1;         //Thông báo import thành công
+}   
+
+message GetPresignedGetObjectURLRequest {
+    string path = 1;        // danhsach.csv
 }
 
-message GetFileToUpdateRequest {
-    string fileName = 1;
-    string fileType = 2;
+message GetPresignedGetObjectURLResponse {
+    string url = 1;        // https://localhost:9000/put
 }
 
-message GetFileToUpdateResponse {
-    string message = 1;
-}
 
 service FileService {
+    rpc GetPresignedPutObjectURL(GetPresignedPutObjectURLRequest) returns (GetPresignedPutObjectURLResponse);
     rpc ImportFile(ImportFileRequest) returns (ImportFileResponse);
-    rpc GetFileToUpdate(GetFileToUpdateRequest) returns (GetFileToUpdateResponse);
 }
 
 
